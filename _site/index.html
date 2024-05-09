@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Sports Quiz Game</title>
+</head>
+<body class="bg-gray-900">
+    <div class="navbar bg-red-700 shadow-xl flex justify-between">
+        <a href="/"class="btn btn-ghost text-xl text-white">Sports Quiz Game</a>
+        <div class="flex gap-2 right-0">
+            <a href="/blog-1" class="btn btn-ghost text-lg text-white">Blog 1</a>
+            <a href="/blog-2" class="btn btn-ghost text-lg text-white">Blog 2</a>
+            <a href="/blog-3" class="btn btn-ghost text-lg text-white">Blog 3</a>
+        </div>
+        </div>
+    </div>
+    <div class="wrapper flex justify-center items-center h-screen">
+        <div class="quiz-container flex flex-col justify-center items-center border-solid border-red-500 border-2 p-5 rounded-xl bg-black/25">
+            <div class="quiz-head flex flex-col justify-center items-center">
+                <h1 class="quiz-title text-5xl mb-2">Sports Quiz Game</h1>
+                <div class="quiz-score flex text-lg mb-2 border-solid">
+                    <span id="correct-score"></span>/<span id="total-question"></span>
+                </div>
+            </div>
+
+            <div class="quiz-body">
+                <h2 class="quiz-question text-xl" id="question">
+                    
+                </h2>
+                <ul class="quiz-options m-3">
+
+                </ul>
+                <div class="flex justify-center"id="result">
+                    
+                </div>
+            </div>
+
+            <div class="quiz-foot">
+                <button type="button" id="check-answer">Check Answer</button>
+                <button class="hidden" type="button" id="play-again">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/script.js"></script>
+</body>
+</html>
