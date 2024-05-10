@@ -1,0 +1,83 @@
+<h1>CLI Script For Blog Sites</h1>
+<p>Below is a zsh script that will automate a blog post:</p>
+<pre><code class="language-bash">#!/bin/zsh
+# ./create_blog.sh &lt;project_name&gt;
+
+# Creates the directory structure
+create_structure() {
+    mkdir -p &quot;$1/images&quot; &quot;$1/scripts&quot; &quot;$1/styles&quot; &quot;$1/site&quot;
+    mkdir -p &quot;$1/site/pages&quot; &quot;$1/site/posts&quot; &quot;$1/site/comments&quot;
+    cd &quot;$1&quot; || exit
+    touch index.html styles/style.css styles/normalize.css scripts/script.js .gitignore
+}
+
+# The automated starting HTML
+add_html() {
+    # Ensure there's a Markdown file to convert, e.g., &quot;content.md&quot;
+    if [ ! -f &quot;./blog1.md&quot; ]; then
+        echo &quot;Markdown file content.md does not exist, creating a sample one.&quot;
+        echo &quot;# Sample Blog Post&quot; &gt; content.md
+        echo &quot;This is a *sample* blog post written in Markdown.&quot; &gt;&gt; content.md
+    fi
+
+    pandoc ./blog1.md -o index.html -s -c styles/normalize.css -c styles/style.css --javascript scripts/script.js --metadata title=&quot;My Blog&quot;
+}
+
+# Automated starting CSS
+add_css() {
+    echo &quot;h1 { color: red; }&quot; &gt; styles/style.css
+}   
+
+# Automated starting Javascript
+add_js() {
+    echo &quot;alert('Javascript is working');&quot; &gt; scripts/script.js
+}
+
+# gitignore created
+create_gitignore() {
+    cat &lt;&lt;- EOF &gt; .gitignore
+node_modules/
+*.log
+EOF
+}
+
+# Check for correct number of arguments
+if [[ $# -ne 1 ]]; then
+  echo &quot;Usage: $0 &lt;project_name&gt;&quot;
+  exit 1
+fi 
+
+# Check if the directory already exists
+if [[ -d &quot;$1&quot; ]]; then
+  echo &quot;Directory $1 already exists. Please choose a different name.&quot;
+  exit 1
+fi
+
+create_structure &quot;$1&quot;
+
+add_html
+
+add_css
+
+add_js
+
+create_gitignore
+
+code .
+
+open index.html
+
+echo &quot;Successful&quot;
+</code></pre>
+<h2>How to Run the Script</h2>
+<ol>
+<li>Open up the terminal</li>
+<li>cd into file location</li>
+<li>chmod +x [script name]</li>
+<li>./[script name] [name of blog]</li>
+</ol>
+<p>Result: <img src="/img/success.jpg" alt="Success"></p>
+<h2>Rationale</h2>
+<p>There are multiple reasons as to why making getting the boilerplate for a blog website using automation rather than starting from scratch. First off, it removes the hastle of starting from the beginning. It promotes efficiency of website creation and allows the user to focus on the more complex parts of the website much sooner. Secondly, it allows for customation and scalability.</p>
+<h2>Potential Knowledge Gained</h2>
+<p>As shell scripting is very important for automation and for working closely with the operating system, learning various things in BASH/zsh, such as syntax, will give me a great foundation to do those things.</p>
